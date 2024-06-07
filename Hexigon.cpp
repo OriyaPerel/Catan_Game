@@ -33,6 +33,15 @@ Hexigon::Hexigon(ResourceType type, int number, std::vector<int> hisVertices, st
     }
 }
 
+// Hexigon::~Hexigon()
+// {
+//     if (edges.size() > 0){
+//     for(auto e : edges) {
+//         delete e;
+//     }
+//     }
+// }
+
 std::string Hexigon::getType() const
 {
     switch (type)
@@ -84,4 +93,30 @@ void Hexigon::printEdges() const
     {
         std::cout << e->toString() << std::endl;
     }
+}
+
+
+
+std::ostream& operator<<(std::ostream& os, const ResourceType& resourceType) {
+    switch (resourceType) {
+        case ResourceType::wool:
+            os << "Wool";
+            break;
+        case ResourceType::brick:
+            os << "Brick";
+            break;
+        case ResourceType::lumber:
+            os << "Lumber";
+            break;
+        case ResourceType::grain:
+            os << "grain";
+            break;
+        case ResourceType::ore:
+            os << "Ore";
+            break;
+        default:
+            os << "Unknown";
+            break;
+    }
+    return os;
 }
