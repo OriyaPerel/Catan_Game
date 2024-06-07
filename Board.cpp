@@ -10,7 +10,7 @@ Board::Board()
         vertices[i] = new Vertice(i); // Create a new vertex and add it to the vector
     }
     hexigons.resize(36); // Resize the vector to hold 19 elements
-    hexigons[0] = new Hexigon(ResourceType::ore, 10, {1, 2, 3, 9,8,7}, &vertices);
+    hexigons[0] = new Hexigon(ResourceType::ore, 10, {1, 2, 3, 9, 8, 7}, &vertices);
     hexigons[1] = new Hexigon(ResourceType::wool, 2, {3, 4, 5, 11, 10, 9}, &vertices);
     hexigons[2] = new Hexigon(ResourceType::lumber, 9, {5, 6, 7, 13, 12, 11}, &vertices);
     hexigons[3] = new Hexigon(ResourceType::grain, 12, {7, 8, 18, 17, 16, 14}, &vertices);
@@ -19,11 +19,11 @@ Board::Board()
     hexigons[6] = new Hexigon(ResourceType::brick, 10, {12, 13, 15, 22, 23, 24}, &vertices);
     hexigons[7] = new Hexigon(ResourceType::grain, 9, {25, 16, 17, 29, 28, 27}, &vertices);
     hexigons[8] = new Hexigon(ResourceType::lumber, 11, {17, 18, 19, 31, 30, 29}, &vertices);
-    hexigons[9] = new Hexigon(ResourceType::None, 0, {19, 20, 21, 33,32,31}, &vertices);
+    hexigons[9] = new Hexigon(ResourceType::None, 0, {19, 20, 21, 33, 32, 31}, &vertices);
     hexigons[10] = new Hexigon(ResourceType::lumber, 3, {21, 22, 23, 33, 34, 35}, &vertices);
-    hexigons[11] = new Hexigon(ResourceType::ore, 8, {23, 24, 25, 35, 36, 37}, &vertices);
-    hexigons[12] = new Hexigon(ResourceType::lumber, 8, {28, 29, 30, 40,39,38}, &vertices);
-    hexigons[13] = new Hexigon(ResourceType::ore, 3, {30, 31, 32, 42,41,40}, &vertices);
+    hexigons[11] = new Hexigon(ResourceType::ore, 8, {23, 24, 26, 37, 36, 35}, &vertices);
+    hexigons[12] = new Hexigon(ResourceType::lumber, 8, {28, 29, 30, 40, 39, 38}, &vertices);
+    hexigons[13] = new Hexigon(ResourceType::ore, 3, {30, 31, 32, 42, 41, 40}, &vertices);
     hexigons[14] = new Hexigon(ResourceType::grain, 4, {32, 33, 34, 42, 43, 44}, &vertices);
     hexigons[15] = new Hexigon(ResourceType::wool, 5, {34, 35, 36, 44, 45, 46}, &vertices);
     hexigons[16] = new Hexigon(ResourceType::brick, 5, {39, 40, 41, 47, 48, 49}, &vertices);
@@ -49,7 +49,6 @@ Board::Board()
     hexigons[36] = new Hexigon(ResourceType::sea, 18, {4, 3, 2}, &vertices);
 }
 
-
 Hexigon *Board::getHexigon(std::string type, int number)
 {
 
@@ -73,12 +72,13 @@ void Board::printBoard()
 
 // Board::~Board()
 // {
-//     for (int i = 0; i < 19; i++)
-//     {
-//         delete hexigons[i];
-//     }
 //     for (int i = 0; i < 54; i++)
 //     {
 //         delete vertices[i];
 //     }
-// }   // Destructor
+
+//     for (int i = 0; i < 36; i++)
+//     {
+//         delete hexigons[i];
+//     }
+//} // Destructor
