@@ -13,14 +13,15 @@ enum class PieceType
 
 class Vertice
 {
-public:
-    Vertice(int id);
+private:
     PieceType pieceType;
     int Id;
     bool isSettlement;
     Player *owner;
 
 public:
+    Vertice(int id);
+    //~Vertice();
     int getid() { return Id; }
     void setPieceType(PieceType pieceType) { this->pieceType = pieceType; }
     bool getisSettlement() { return isSettlement; }
