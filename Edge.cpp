@@ -6,6 +6,10 @@ Edge::Edge(Vertice *vertice1, Vertice *vertice2)
     this->vertice2 = vertice2;
 }
 
+// Edge::~Edge()
+// {
+// }
+
 Vertice *Edge::getOtherVertice(Vertice *v)
 {
     if (v == vertice1)
@@ -25,5 +29,5 @@ bool Edge::thisVerticeInEdge(Vertice *v)
 }
 std::string Edge:: toString()
     {
-        return "Edge:" + std::to_string(vertice1->getid()) + "-> " + std::to_string(vertice2->getid());
+        return "roade:" + std::to_string(vertice1->getid()) + "-> " + std::to_string(vertice2->getid());
     }
