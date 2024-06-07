@@ -12,6 +12,7 @@ private:
 
 public:
     Edge(Vertice *vertice1, Vertice *vertice2);
+    //~Edge();
     Vertice *getOtherVertice(Vertice *v);
     bool thisVerticeInEdge(Vertice *v);
     Vertice *getV1() { return vertice1; }
