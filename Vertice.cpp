@@ -6,6 +6,9 @@ Vertice::Vertice(int id)
     this->Id = id;
     this->isSettlement = false;
 }
+// Vertice::~Vertice()
+// {
+// }
 
 std::string Vertice::pieceTypeToString(PieceType pieceType)
 {
@@ -17,7 +20,6 @@ std::string Vertice::pieceTypeToString(PieceType pieceType)
         return "None";
     case PieceType::Settlement:
         return "settlement";
-    // Add more cases as needed
     default:
         return "Unknown";
     }
@@ -27,10 +29,10 @@ std::string Vertice::toString()
 {
     if (owner == NULL)
     {
-        return "Vertice id: " + std::to_string(Id) + " isSettlement: " + std::to_string(isSettlement) + " owner: " + "None" + " pieceType: " + getPieceType();
+        return "Vertice id: " + std::to_string(Id) + " owner: " + "None" + " pieceType: " + getPieceType();
     }
     else
     {
-        return "Vertice id: " + std::to_string(Id) + " isSettlement: " + std::to_string(isSettlement) + " owner: " + owner->getName() + " pieceType: " + getPieceType();
+        return "Vertice id: " + std::to_string(Id) + " pieceType: " + getPieceType();
     }
 }
