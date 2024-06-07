@@ -9,7 +9,7 @@ class Board
 {
 public:
     Board();
-    //~Board();
+   // ~Board();
     Hexigon *getHexigon(std::string type, int number);
     std::vector<Hexigon *> gethexigonsboard() { return hexigons; };
     std::vector<Vertice *> getverticesboard() { return vertices; };
@@ -18,9 +18,11 @@ public:
         return vertices[index]->toString();
     };
     void printBoard();
+    ResourceType getResourseofNumwithV(int number,Vertice *v);
 
 private:
     std::vector<Hexigon *> hexigons;
     std::vector<Vertice *> vertices;
+    
 };
 #endif
