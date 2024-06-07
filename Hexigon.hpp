@@ -29,8 +29,9 @@ private:
 
 public:
     Hexigon(ResourceType type, int number, std::vector<int> hisVertices, std::vector<Vertice *> *Allvertices);
-
+    //~Hexigon();
     std::string getType() const;
+    ResourceType getResourceType() const { return type; }
     int getNumber() { return number; }
 
     std::vector<Vertice *> getVertices() const { return vertices; }
@@ -40,4 +41,5 @@ public:
     void printVertices() const;
     void printEdges() const;
 };
+std::ostream &operator<<(std::ostream &os, const ResourceType &resourceType);
 #endif
