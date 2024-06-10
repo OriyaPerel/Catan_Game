@@ -10,6 +10,13 @@ Catan::Catan(Player *p1, Player *p2, Player *p3)
     p1->setHisTurn(true); // p1 is the first player start the game
     initialDeck();        // create the deck of the game
 }
+Catan::~Catan()
+{
+    for (developmentCard *card : deck)
+    {
+        delete card;
+    }
+}
 void Catan::initialDeck()
 {
     deck.resize(19);
@@ -30,36 +37,33 @@ void Catan::initialDeck()
         deck[index++] = new RoadBuilding();
     }
 }
-// Catan::~Catan()
-// {
-//     for (developmentCard *card : deck)
-//     {
-//         delete card;
-//     }
-//     for (Player *player : players)
-//     {
-//         delete player;
-//     }
-// }
 
-developmentCard *Catan::getCard(CardType cardType)
+
+developmentCard *Catan::getCard2(CardType cardType, Player *p)
 {
-    int count = 0;
+    if (p->isHisTurn() == false)
+    {
+        throw std::invalid_argument("It's not your turn so you can't get a card");
+    }
+    if ((p->getAmountOfResource(ResourceType::ore) < 1) || (p->getAmountOfResource(ResourceType::grain) < 1) || (p->getAmountOfResource(ResourceType::wool) < 1))
+    {
+        throw std::invalid_argument("You don't have enough resources");
+    }
+
     for (developmentCard *card : deck)
     {
-        if (cardTypeToString(cardType) == getCardType(card) && !card->isInUse())
+        if (cardTypeToString(cardType) == getCardType(card) && card->getIsBought() == false)
         {
-            std::cout << "The card " << count << " is available" << std::endl;
+            p->addOrRemoveCard(cardType, 1);
+            card->setBought(true);
             return card;
         }
-        count++;
     }
-    std::cout << "No card of requested type available." << std::endl;
+    throw std::invalid_argument("No card of requested type available");
     return nullptr;
 }
 
-
-std::string Catan::getCardType(developmentCard *card)
+std::string Catan::getCardType(developmentCard *card) const
 {
     if (card == nullptr)
     {
@@ -89,7 +93,7 @@ std::string Catan::getCardType(developmentCard *card)
     return "Unknown card type";
 }
 
-std::string Catan::cardTypeToString(CardType cardType)
+std::string Catan::cardTypeToString(CardType cardType) const
 {
     switch (cardType)
     {
@@ -119,7 +123,6 @@ void Catan::ChooseStartingPlayer()
         std::cout << "No players available" << std::endl;
     }
 }
-
 Board &Catan::getBoard()
 {
     return board;
@@ -268,10 +271,10 @@ void Catan::printWinner() const
     std::cout << "there is no winner yet.." << std::endl;
 }
 
-void Catan::printPlayerInfo(Player *player)
+void Catan::printPlayerInfo(Player *player) const
 {
     std::cout << "information about player: " << player->getName() << std::endl;
-    std::cout << "Number of Knights: " << player->getKnights() << std::endl;
+ // std::cout << "Number of Knights: " << player->getKnights() << std::endl;
     std::cout << "Number of Points: " << player->getPoints() << std::endl;
 
     std::cout << "Resources:" << std::endl;
