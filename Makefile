@@ -10,7 +10,7 @@ SOURCES=Board.cpp catan.cpp Player.cpp Edge.cpp Vertice.cpp Hexigon.cpp developm
 
 OBJECTS=$(subst .cpp,.o,$(SOURCES))
 
-run: demo
+catan: demo
 	./$^
 
 demo: Demo.o $(OBJECTS)
