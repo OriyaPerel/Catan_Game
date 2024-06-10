@@ -21,15 +21,17 @@ private:
 
 public:
     Vertice(int id);
-    //~Vertice();
-    int getid() { return Id; }
+    ~Vertice(){}
+    int getid() const{ return Id; }
+    Player *getOwner() const{ return owner; }
+    bool getisSettlement() const{ return isSettlement; }
+
     void setPieceType(PieceType pieceType) { this->pieceType = pieceType; }
-    bool getisSettlement() { return isSettlement; }
     void setisSettlement(bool isSettlement) { this->isSettlement = isSettlement; }
     void setOwner(Player *owner) { this->owner = owner; }
-    Player *getOwner() { return owner; }
-    std::string pieceTypeToString(PieceType pieceType);
-    std::string getPieceType() { return pieceTypeToString(pieceType); }
-    std::string toString();
+    
+    std::string pieceTypeToString(PieceType pieceType)const;
+    std::string getPieceType() const{ return pieceTypeToString(pieceType); }
+    std::string toString() const;
 };
 #endif
