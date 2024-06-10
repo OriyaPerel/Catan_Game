@@ -5,22 +5,25 @@ enum class ResourceType;
 #include "Player.hpp"
 #include "Hexigon.hpp"
 
-// class Catan;
-//  VictoryPoint ניצחון
-//  RoadBuilding בניית כביש
-//  YearOfPlenty שנת השפעה
-//  Monopoly מונופול
-//  Knight לוחם
+enum class CardType
+{
+    Knight, 
+    Monopoly,
+    YearOfPlenty,
+    VictoryPoint,
+    RoadBuilding
+};
 
 class developmentCard
 {
 public:
-    bool isUsed = false;
-    bool isInUse() const { return isUsed; }
+    bool isBought = false;
     virtual ~developmentCard();
     virtual void active(Player *player) = 0;
     void startActive(Player *player);
     void endActive(Player *player);
+    void setBought(bool isBought) { this->isBought = isBought; }
+    bool getIsBought() const { return isBought; }
     };
 
 class Monopoly : public developmentCard
