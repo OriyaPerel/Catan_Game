@@ -1,6 +1,8 @@
 #include "Player.hpp"
 #include "Board.hpp"
 using namespace std;
+ // id:322522806
+ // email:oriyaperel18@gmail.com
 
 int Player::getAmountOfResource(ResourceType resource) const
 {
