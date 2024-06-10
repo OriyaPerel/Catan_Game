@@ -3,6 +3,8 @@
 #define VERTICE_HPP
 class Hexigon; // Forward declaration
 #include "Player.hpp"
+ // id:322522806
+ // email:oriyaperel18@gmail.com
 
 enum class PieceType
 {
