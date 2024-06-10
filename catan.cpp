@@ -1,5 +1,7 @@
 
 #include "catan.hpp"
+ // id:322522806
+ // email:oriyaperel18@gmail.com
 
 #include <iostream>
 Catan::Catan(Player *p1, Player *p2, Player *p3)
