@@ -33,14 +33,14 @@ Hexigon::Hexigon(ResourceType type, int number, std::vector<int> hisVertices, st
     }
 }
 
-// Hexigon::~Hexigon()
-// {
-//     if (edges.size() > 0){
-//     for(auto e : edges) {
-//         delete e;
-//     }
-//     }
-// }
+Hexigon::~Hexigon()
+{
+    if (edges.size() > 0){
+    for(auto e : edges) {
+        delete e;
+    }
+    }
+}
 
 std::string Hexigon::getType() const
 {
