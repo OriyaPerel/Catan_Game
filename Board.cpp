@@ -1,6 +1,8 @@
 #include "Board.hpp"
 #include "Hexigon.hpp"
 #include "Vertice.hpp"
+# // id:322522806
+# // email:oriyaperel18@gmail.com
 
 Board::Board()
 {
