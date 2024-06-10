@@ -2,18 +2,6 @@
 #include "Board.hpp"
 using namespace std;
 
-// Player::~Player(){
-//     for (Vertice *v : placesOfPlayer)
-//     {
-//         delete v;
-//     }
-//     for (Edge *e : roads)
-//     {
-//         delete e;
-//     }
-
-// }
-
 int Player::getAmountOfResource(ResourceType resource) const
 {
     if (resources.find(resource) != resources.end())
@@ -22,7 +10,6 @@ int Player::getAmountOfResource(ResourceType resource) const
     }
     else
     {
-
         return 0;
     }
 }
@@ -46,6 +33,7 @@ void Player::printPlaces() const
 
 void Player::printResources() const
 {
+    std::cout << "Player " << name << " has the following resources:" << std::endl;
     for (const auto &resource : resources)
     {
         cout << "Resource: " << resource.first << ", Amount: " << resource.second << endl;
@@ -59,6 +47,10 @@ void Player::printPoints() const
 
 void Player::RemoveOraddResource(ResourceType resource, int count)
 {
+    if (resources[resource] + count < 0) {
+        throw std::invalid_argument("Cannot remove more resources than available");
+    }
+    
     resources[resource] += count;
 }
 
@@ -118,7 +110,6 @@ bool hasNeighbour(Vertice *v, std::vector<Edge *> h1e, std::vector<Edge *> h2e, 
     {
         if (e->thisVerticeInEdge(v) && (e->getOtherVertice(v)->getisSettlement() == true))
         {
-            // std::cout<<e->toString()<<std::endl;
             return true;
         }
     }
@@ -126,7 +117,6 @@ bool hasNeighbour(Vertice *v, std::vector<Edge *> h1e, std::vector<Edge *> h2e, 
     {
         if (e->thisVerticeInEdge(v) && e->getOtherVertice(v)->getisSettlement() == true)
         {
-            //  std::cout<<e->toString()<<std::endl;
             return true;
         }
     }
@@ -140,7 +130,7 @@ bool hasNeighbour(Vertice *v, std::vector<Edge *> h1e, std::vector<Edge *> h2e, 
     return false;
 }
 
-bool Player::Has2RoadsBetween(Vertice *v)
+bool Player::Has2RoadsBetween(const Vertice *v)const 
 {
     for (Edge *e : roads)
     {
@@ -159,13 +149,13 @@ bool Player::Has2RoadsBetween(Vertice *v)
     return false;
 }
 
-void Player::placeSettelemnt(std::vector<std::string> places, std::vector<int> placesNum, Board &board)
+void Player::placeSettelemnt(std::vector<std::string> places, std::vector<int> placesNum,const Board &board)
 {
     if (hisTurn == false)
     {
         throw std::invalid_argument("It's not your turn");
     }
-    if (placesOfPlayer.size() >= 2 && (this->resources[ResourceType::brick] < 1 ||this-> resources[ResourceType::lumber] < 1 || this->resources[ResourceType::wool] < 1 || resources[ResourceType::grain] < 1))
+    if (placesOfPlayer.size() >= 2 && (this->resources[ResourceType::brick] < 1 || this->resources[ResourceType::lumber] < 1 || this->resources[ResourceType::wool] < 1 || resources[ResourceType::grain] < 1))
     {
         throw std::invalid_argument("player can't buy a settlement");
     }
@@ -216,7 +206,6 @@ void Player::placeSettelemnt(std::vector<std::string> places, std::vector<int> p
     this->placesOfPlayer.push_back(v); // add this settlement to the player's settlements
 }
 
-
 Edge *findCommonEdgeInBoard(const Hexigon &h1, const Hexigon &h2)
 {
     // Get the edges of each hexagon
@@ -261,7 +250,7 @@ bool hasEdgeNeighbour(Edge *e, std::vector<Edge *> roads)
     return false;
 }
 
-void Player::placeRoad(std::vector<std::string> places, std::vector<int> placesNum, Board Board)
+void Player::placeRoad(std::vector<std::string> places, std::vector<int> placesNum,const Board &Board)
 {
     if (hisTurn == false)
     {
@@ -288,7 +277,7 @@ void Player::placeRoad(std::vector<std::string> places, std::vector<int> placesN
         throw std::invalid_argument("There is no settlement in this edge");
     }
 
-    if (roads.size() >=2 && hasEdgeNeighbour(e, roads) == false)
+    if (roads.size() >= 2 && hasEdgeNeighbour(e, roads) == false)
     {
         throw std::invalid_argument("There is not a path to this edge");
     }
@@ -302,7 +291,7 @@ void Player::placeRoad(std::vector<std::string> places, std::vector<int> placesN
     this->roads.push_back(e);
 }
 
-void Player::chengeSettlementToCity(std::vector<std::string> places, std::vector<int> placesNum, Board &board)
+void Player::chengeSettlementToCity(std::vector<std::string> places, std::vector<int> placesNum,const Board &board)
 {
     if (this->hisTurn == false)
     {
@@ -317,14 +306,14 @@ void Player::chengeSettlementToCity(std::vector<std::string> places, std::vector
     Hexigon *hex3 = board.getHexigon(places[2], placesNum[2]);
 
     Vertice *v = findCommonVertexInBoard(*hex1, *hex2, *hex3); // the common vertex of the three hexigons
-    if (v == nullptr) // there is no common vertex
+    if (v == nullptr)                                          // there is no common vertex
     {
         throw std::invalid_argument("There is no common vertex in this places");
     }
 
-     if (v->getOwner() != this) // there are already a settlement in this vertex
+    if (v->getOwner() != this) // there are already a settlement in this vertex
     {
-        throw std::invalid_argument("You can't chenge this settlment, it's not your");
+        throw std::invalid_argument("You can't chenge this settlment, it's not yours");
     }
 
     v->setPieceType(PieceType::City);
@@ -333,7 +322,7 @@ void Player::chengeSettlementToCity(std::vector<std::string> places, std::vector
     RemoveOraddResource(ResourceType::ore, -3);
 }
 
-void Player::trade(Player *player, ResourceType give, ResourceType get, int amountget, int amountgive)
+void Player::tradeResours(Player *player, ResourceType give, ResourceType get, int amountget, int amountgive)
 {
     if (hisTurn == false)
     {
@@ -352,4 +341,29 @@ void Player::trade(Player *player, ResourceType give, ResourceType get, int amou
     this->RemoveOraddResource(get, amountget);
     player->RemoveOraddResource(give, amountgive);
     player->RemoveOraddResource(get, -amountget);
+}
+
+void Player::tradeCard(Player *player, CardType give, CardType get){
+    if (hisTurn == false)
+    {
+        throw std::invalid_argument("It's not your turn");
+    }
+    if (this == player)
+    {
+        throw std::invalid_argument("You can't trade with yourself");
+    }
+
+    if (this->cards[give] < 1 || player->getCardMap()[get] < 1)
+    {
+        throw std::invalid_argument("You don't have enough cards to trade");
+    }
+    this->addOrRemoveCard(give, -1);
+    this->addOrRemoveCard(get, 1);
+    player->addOrRemoveCard(give, 1);
+    player->addOrRemoveCard(get, -1);
+}
+
+void Player::addOrRemoveCard(CardType card, int count)
+{
+    cards[card] += count;
 }
