@@ -12,13 +12,13 @@ private:
 
 public:
     Edge(Vertice *vertice1, Vertice *vertice2);
-    //~Edge();
-    Vertice *getOtherVertice(Vertice *v);
-    bool thisVerticeInEdge(Vertice *v);
-    Vertice *getV1() { return vertice1; }
-    Vertice *getV2() { return vertice2; }
-    Player *getEdgeOwner() { return owner; }
+    ~Edge(){}
+    Vertice *getOtherVertice(const Vertice *v)const ;
+    bool thisVerticeInEdge( const Vertice *v)const ;
+    Vertice *getV1() const { return vertice1; }
+    Vertice *getV2()const  { return vertice2; }
+    Player *getEdgeOwner() const{ return owner; }
     void setEdgeOwner(Player *owner) { this->owner = owner; }
-    std::string toString();
+    std::string toString()const ;
 };
 #endif
