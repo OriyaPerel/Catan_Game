@@ -1,4 +1,6 @@
 #include "Hexigon.hpp"
+# // id:322522806
+# // email:oriyaperel18@gmail.com
 
 Hexigon::Hexigon(ResourceType type, int number, std::vector<int> hisVertices, std::vector<Vertice *> *Allvertices)
     : type(type), number(number), vertices(hisVertices.size(), nullptr)
