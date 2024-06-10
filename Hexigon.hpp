@@ -29,10 +29,10 @@ private:
 
 public:
     Hexigon(ResourceType type, int number, std::vector<int> hisVertices, std::vector<Vertice *> *Allvertices);
-    //~Hexigon();
+    ~Hexigon();
     std::string getType() const;
     ResourceType getResourceType() const { return type; }
-    int getNumber() { return number; }
+    int getNumber() const{ return number; }
 
     std::vector<Vertice *> getVertices() const { return vertices; }
     std::vector<Edge *> getEdges() const { return edges; }
