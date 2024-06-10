@@ -6,11 +6,8 @@ Vertice::Vertice(int id)
     this->Id = id;
     this->isSettlement = false;
 }
-// Vertice::~Vertice()
-// {
-// }
 
-std::string Vertice::pieceTypeToString(PieceType pieceType)
+std::string Vertice::pieceTypeToString(PieceType pieceType) const
 {
     switch (pieceType)
     {
@@ -25,7 +22,7 @@ std::string Vertice::pieceTypeToString(PieceType pieceType)
     }
 }
 
-std::string Vertice::toString()
+std::string Vertice::toString()const
 {
     if (owner == NULL)
     {
