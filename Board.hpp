@@ -7,22 +7,18 @@
 #define BOARD_HPP
 class Board
 {
-public:
-    Board();
-   // ~Board();
-    Hexigon *getHexigon(std::string type, int number);
-    std::vector<Hexigon *> gethexigonsboard() { return hexigons; };
-    std::vector<Vertice *> getverticesboard() { return vertices; };
-    std::string printVertice(int index)
-    {
-        return vertices[index]->toString();
-    };
-    void printBoard();
-    ResourceType getResourseofNumwithV(int number,Vertice *v);
-
 private:
     std::vector<Hexigon *> hexigons;
     std::vector<Vertice *> vertices;
-    
+
+public:
+    Board();
+    ~Board();
+    Hexigon *getHexigon(std::string type, int number) const;
+    std::vector<Hexigon *> gethexigonsboard() const { return hexigons; };
+    std::vector<Vertice *> getverticesboard() const { return vertices; };
+    std::string printVertice(int index) const;
+
+    void printBoard() const;
 };
 #endif
