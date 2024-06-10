@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <stdexcept>
 #include <map>
+ // id:322522806
+ // email:oriyaperel18@gmail.com
 
 enum class ResourceType;
 enum class CardType;
