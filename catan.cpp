@@ -1,7 +1,7 @@
 
 #include "catan.hpp"
- // id:322522806
- // email:oriyaperel18@gmail.com
+// id:322522806
+// email:oriyaperel18@gmail.com
 
 #include <iostream>
 Catan::Catan(Player *p1, Player *p2, Player *p3)
@@ -40,7 +40,6 @@ void Catan::initialDeck()
     }
 }
 
-
 developmentCard *Catan::getCard2(CardType cardType, Player *p)
 {
     if (p->isHisTurn() == false)
@@ -58,6 +57,9 @@ developmentCard *Catan::getCard2(CardType cardType, Player *p)
         {
             p->addOrRemoveCard(cardType, 1);
             card->setBought(true);
+            p->RemoveOraddResource(ResourceType::ore, -1);
+            p->RemoveOraddResource(ResourceType::grain, -1);
+            p->RemoveOraddResource(ResourceType::wool, -1);
             return card;
         }
     }
@@ -276,7 +278,7 @@ void Catan::printWinner() const
 void Catan::printPlayerInfo(Player *player) const
 {
     std::cout << "information about player: " << player->getName() << std::endl;
- // std::cout << "Number of Knights: " << player->getKnights() << std::endl;
+    // std::cout << "Number of Knights: " << player->getKnights() << std::endl;
     std::cout << "Number of Points: " << player->getPoints() << std::endl;
 
     std::cout << "Resources:" << std::endl;
