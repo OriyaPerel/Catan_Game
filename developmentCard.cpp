@@ -1,26 +1,18 @@
 #include "developmentCard.hpp"
- // id:322522806
- // email:oriyaperel18@gmail.com
 
 
 void developmentCard::startActive(Player *player)
 {
     if (this->isBought == false)
     {
-        throw std::invalid_argument("The card is not Bought");
+        throw std::invalid_argument("The card is not Bought so you can't use it");
     }
     if (player->isHisTurn() == false)
     {
         throw std::invalid_argument("It's not your turn so you can't use the card");
     }
 }
-void developmentCard::endActive(Player *player)
-{
-    player->RemoveOraddResource(ResourceType::ore, -1);
-    player->RemoveOraddResource(ResourceType::grain, -1);
-    player->RemoveOraddResource(ResourceType::wool, -1);
-    
-}
+
 
 developmentCard::~developmentCard()
 {
@@ -54,8 +46,6 @@ void Monopoly::active(Player *player)
     }
     player->addOrRemoveCard(CardType::Monopoly, -1);
     std::cout << "monopoly card is used" << std::endl;
-
-    endActive(player);
 }
 
 VictoryPoint::~VictoryPoint() {}
@@ -66,7 +56,7 @@ void VictoryPoint::active(Player *player)
     std::cout << "now player have: " << player->getPoints() << std::endl;
     std::cout << "VictoryPoint card is used" << std::endl;
     player->addOrRemoveCard(CardType::VictoryPoint, -1);
-    endActive(player);
+  
 }
 
 RoadBuilding::~RoadBuilding() {}
@@ -78,7 +68,6 @@ void RoadBuilding::active(Player *player)
     player->addOrRemoveCard(CardType::RoadBuilding, -1);
     std::cout << "RoadBuilding card is used" << std::endl;
 
-    endActive(player);
 }
 void YearOfPlenty::setResources(ResourceType resource1, ResourceType resource2)
 {
@@ -97,7 +86,7 @@ void YearOfPlenty::active(Player *player)
     player->RemoveOraddResource(resource2, 1);
     std::cout << "YearOfPlenty card is used" << std::endl;
     player->addOrRemoveCard(CardType::YearOfPlenty, -1);
-    endActive(player);
+ 
 }
 
 Knight::~Knight() {}
@@ -111,5 +100,4 @@ void Knight::active(Player *player)
     }
     std::cout << "Knight card is used" << std::endl;
 
-    endActive(player);
 }
