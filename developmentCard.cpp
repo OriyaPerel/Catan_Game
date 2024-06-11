@@ -1,5 +1,6 @@
 #include "developmentCard.hpp"
-
+// id:322522806
+// email:oriyaperel18@gmail.com
 
 void developmentCard::startActive(Player *player)
 {
@@ -12,7 +13,6 @@ void developmentCard::startActive(Player *player)
         throw std::invalid_argument("It's not your turn so you can't use the card");
     }
 }
-
 
 developmentCard::~developmentCard()
 {
@@ -56,7 +56,6 @@ void VictoryPoint::active(Player *player)
     std::cout << "now player have: " << player->getPoints() << std::endl;
     std::cout << "VictoryPoint card is used" << std::endl;
     player->addOrRemoveCard(CardType::VictoryPoint, -1);
-  
 }
 
 RoadBuilding::~RoadBuilding() {}
@@ -67,7 +66,6 @@ void RoadBuilding::active(Player *player)
     player->RemoveOraddResource(ResourceType::lumber, 1);
     player->addOrRemoveCard(CardType::RoadBuilding, -1);
     std::cout << "RoadBuilding card is used" << std::endl;
-
 }
 void YearOfPlenty::setResources(ResourceType resource1, ResourceType resource2)
 {
@@ -86,7 +84,6 @@ void YearOfPlenty::active(Player *player)
     player->RemoveOraddResource(resource2, 1);
     std::cout << "YearOfPlenty card is used" << std::endl;
     player->addOrRemoveCard(CardType::YearOfPlenty, -1);
- 
 }
 
 Knight::~Knight() {}
@@ -99,5 +96,4 @@ void Knight::active(Player *player)
         player->upDatePoints(2);
     }
     std::cout << "Knight card is used" << std::endl;
-
 }
