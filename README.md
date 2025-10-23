@@ -1,7 +1,6 @@
 # 🌄 Catan Game
 
-A full object-oriented implementation of *The Settlers of Catan* in modern C++, including board logic, player management, resource distribution, and comprehensive unit testing using Doctest.
-
+A full object-oriented implementation of *The Settlers of Catan* in modern C++, including board logic, player management and resource distribution.
 ---
 
 ## 🎯 Game Overview
