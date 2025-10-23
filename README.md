@@ -1,7 +1,6 @@
 # 🌄 Catan Game
 
-A Java-based version of the classic board game **The Settlers of Catan**, designed for **3 players**.  
-The project demonstrates **Object-Oriented Programming**, **resource management**, and **strategic gameplay logic**.
+A full object-oriented implementation of *The Settlers of Catan* in modern C++, including board logic, player management, resource distribution, and comprehensive unit testing using Doctest.
 
 ---
 
